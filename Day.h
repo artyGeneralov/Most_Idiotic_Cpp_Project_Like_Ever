@@ -6,29 +6,34 @@
 
 class Day : public Date {
 private:
-	char* comment;
-	// Day d("Go to work", 1, 2, 2020);
+	char* comment; 
 
-
-	// Date d1(1,2,2020);
 public:
-	Day(char* comment, int day = DEFAULT_DAY, int month = DEFAULT_MONTH, int year = DEFAULT_YEAR); //DONE
-	Day(int day = DEFAULT_DAY, int month = DEFAULT_MONTH, int year = DEFAULT_YEAR); //DONE
-	Day(const Day&); //DONE
-	~Day();//DONE
 
-	Day operator=(Day);//DONE
-	void setComment(const char*);//DONE
+	// Constructors/Destructors:
+	Day(char* comment, int day = DEFAULT_DAY, int month = DEFAULT_MONTH, int year = DEFAULT_YEAR);
+	Day(int day = DEFAULT_DAY, int month = DEFAULT_MONTH, int year = DEFAULT_YEAR);
+	Day(const Day&);
+	~Day();
 
-	virtual void outFunc(std::ostream&) const override;
+	// Setters:
+	void setComment(const char*);
 
-	//friend std::ostream& operator<<(std::ostream&, const Date&);
-	friend std::ostream& operator<<(std::ostream&, const Day&);
-	//friend std::istream& operator>>(std::istream&, Day&);
+	// Operators overloading
+	Day operator=(Day);
+	// Increments
+	virtual Date& operator++();//prefix ++a 
+	virtual Date operator++(int);// postfix  
+	// Binary
+	virtual Date operator+=(int days); 
+	virtual bool operator>(const Date&) const;
+	virtual bool operator<(const Date&) const;
+	virtual bool operator==(const Date&) const;
 
-
-	// ++(post), ++(pre), +=, >, <, ==
-
+	// I/O operators
+	friend std::ostream& operator<<(std::ostream&, const Day&); 
+	friend std::istream& operator>>(std::istream&, Day&);
+	virtual void outFunc(std::ostream&) const override; // helper for operator<< (output)
 };
 
 

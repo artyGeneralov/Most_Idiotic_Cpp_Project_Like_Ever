@@ -14,29 +14,29 @@ protected:
 
 public:
 	
+	// Constructors / Destructors:
 	Date(int day = DEFAULT_DAY, int month = DEFAULT_MONTH, int year = DEFAULT_YEAR);
 	virtual ~Date() {};
 
-	// cout << (Date) << '\n\' << (Date);
-	friend std::ostream& operator<<(std::ostream&, const Date&);//DONE
-	friend std::istream& operator>>(std::istream&, Date&);//DONE
-
-	Date& operator++();//prefix ++a DONE
-	Date operator++(int);// postfix DONE
-	Date operator+=(int days); // DONE
-	Date& operator=(Date&);
-	bool operator>(const Date&) const;// DONE
-	bool operator<(const Date&) const;// DONE
-	bool operator==(const Date&) const;// DONE
-
-
-	virtual void outFunc(std::ostream& output) const {};
-
+	// Getters & Setters:
 	const int getDay() const { return day; }
 	const int getMonth() const { return month; }
 	const int getYear() const { return year; }
+	void setDate(int, int, int);
+
+	// Operator overloading:
+	Date& operator=(Date&);
+	// Increments
+	virtual Date& operator++();//prefix ++a 
+	virtual Date operator++(int);//postfix 
+	// Binary
+	virtual Date operator+=(int days);
+	virtual bool operator>(const Date&) const;
+	virtual bool operator<(const Date&) const;
+	virtual bool operator==(const Date&) const;
+	// I/O
+	friend std::ostream& operator<<(std::ostream&, const Date&);
+	friend std::istream& operator>>(std::istream&, Date&);
+	virtual void outFunc(std::ostream& output) const {};
 };
-
-
-
 #endif
